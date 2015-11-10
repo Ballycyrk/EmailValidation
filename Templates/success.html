@@ -14,7 +14,9 @@
       {% endwith %}
     <h1>EMAILS</h1>
     {% for email in emails: %}
-      <p>{{ email['email'] }} {{ email['created_at'].strftime('%m/%d/%y %I:%M%p') }}</p>
+      <form action='/delete' method='post'>
+      <p>{{ email['email'] }} {{ email['created_at'].strftime('%m/%d/%y %I:%M%p') }} <button name='delete' value={{ email['id'] }} >Delete Me!   </button>
+      </form>
     {% endfor %}
   </body>
 </html>

@@ -23,5 +23,12 @@ def validate():
     flash(mess)
     print flash
     return render_template('success.html', emails = emails)
+@app.route('/delete', methods=['POST'])
+def delete():
+  email_id = request.form['delete']
+  delete = "DELETE FROM `emaildb`.`emails` WHERE `id` = '{}'".format(email_id)
+  mysql.run_mysql_query(delete)
+  emails = mysql.fetch('SELECT * FROM emails')
+  return render_template('success.html', emails = emails)
 app.run(debug=True)
 

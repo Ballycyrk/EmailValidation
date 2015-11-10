@@ -7,7 +7,7 @@
   <body>
     <h1>EMAILS</h1>
     {% for email in emails: %}
-      <p>{{ email['email'] }} {{ email['created_at'] }}</p>
+      <p>{{ email['email'] }} {{ email['created_at'].strftime('%m/%d/%y %I:%M%p') }}</p>
     {% endfor %}
   </body>
 </html>

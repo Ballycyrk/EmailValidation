@@ -12,6 +12,7 @@ def index():
   return render_template('index.html')
 @app.route('/validate', methods=['POST'])
 def validate():
+  mess = "The email address you entered " + request.form['email'] + " is a VALID email address! Thank you!"
   if not EMAIL_REGEX.match(request.form['email']):
     flash('Please Enter a valid email address.')
     return redirect('/')
@@ -19,6 +20,8 @@ def validate():
     insert = "INSERT INTO emails (email, created_at, updated_at) VALUES ('{}', NOW(), NOW())".format(request.form['email'])
     mysql.run_mysql_query(insert)
     emails = mysql.fetch('SELECT * FROM emails')
+    flash(mess)
+    print flash
     return render_template('success.html', emails = emails)
 app.run(debug=True)
 

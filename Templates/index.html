@@ -5,6 +5,20 @@
     <title>Enter Email</title>
   </head>
   <body>
-    <h1>hi</h1>
+    <h1>Welcome to the Email Database!</h1>
+    <h3>Please enter an email address:</h3>
+    <form action='/validate' method='post'>
+      <input type='text' name='email'>
+      <input type='submit' value='submit'>
+    </form>
+      <div id="flash">
+      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+      {% for message in messages %}
+        <p class="flash">{{ message }}</p>
+      {% endfor %}
+      {% endif %}
+      {% endwith %}
+      </div>
   </body>
 </html>
